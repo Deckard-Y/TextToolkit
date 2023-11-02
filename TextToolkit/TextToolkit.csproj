@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+		<PropertyGroup>
+			<OutputType>WinExe</OutputType>
+			<TargetFramework>net5.0-windows</TargetFramework>
+			<ApplicationManifest>app.manifest</ApplicationManifest>
+			<StartupObject>MyApp.Program</StartupObject>
+			<AssemblyTitle>MyApp</AssemblyTitle>
+			<AssemblyDescription>My Application Description</AssemblyDescription>
+			<AssemblyCompany>MyCompany</AssemblyCompany>
+			<AssemblyProduct>MyProduct</AssemblyProduct>
+			<AssemblyVersion>1.0.0.0</AssemblyVersion>
+			<FileVersion>1.0.0.0</FileVersion>
+			<!-- その他のプロパティ -->
+		</PropertyGroup>
+
+		<!-- その他の設定 -->
+
+
+	<ItemGroup>
+    <None Update="AppSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
