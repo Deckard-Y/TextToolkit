@@ -8,26 +8,29 @@ namespace TextToolkit
     {
         private static readonly Dictionary<string, string> patterns = new Dictionary<string, string>
         {
+            // Headers
             { @"^# (.+)$", "<h1>$1</h1>" },
             { @"^## (.+)$", "<h2>$1</h2>" },
             { @"^### (.+)$", "<h3>$1</h3>" },
 
-            // Markdown Parser
+            // Horizontal Rule
             { @"^---$", "<hr>" },
             { @"^> (.+)$", "<blockquote>$1</blockquote>" },
 
-            // List items - ここはMarkdownのリストの構造に合わせて調整する必要があります。
-            { @"^\* (.+)$", "<li>$1</li>" }, // これは単純なリストアイテムですが、実際にはもっと複雑な処理が必要かもしれません。
-
             // Bold and Italic
-            { @"^\*\*(.+)\*\*$", "<strong>$1</strong>" }, // `<b>`の代わりに`<strong>`を使用
-            { @"^\*(.+)\*$", "<em>$1</em>" }, // `<i>`の代わりに`<em>`を使用
+            { @"(?<!\*)\*\*(.+?)\*\*(?!\*)", "<strong>$1</strong>" }, // Make non-greedy
+            { @"(?<!\*)\*(.+?)\*(?!\*)", "<em>$1</em>" }, // Make non-greedy
 
             // Images and Links
-            { @"^\!\[(.+)\]\((.+)\)$", "<img src=\"$2\" alt=\"$1\">" },
-            { @"^\[(.+)\]\((.+)\)$", "<a href=\"$2\">$1</a>" },
-        };
+            { @"!\[(.+?)\]\((.+?)\)", "<img src=\"$2\" alt=\"$1\">" }, // Make non-greedy and remove line start anchor
+            { @"\[(.+?)\]\((.+?)\)", "<a href=\"$2\">$1</a>" }, // Make non-greedy and remove line start anchor
 
+            // List items
+            { @"^(?<!\*)\* (.+)$", "<li>$1</li>" }, // Add line start anchor to match start of line
+
+            // Multiple Markdown Patterns in Single Line
+            { @"(?<=\s|^)(\*|\d+\.)\s(.+?)(?=\s+(\*|\d+\.)\s|\s*$)", "<li>$2</li>" },
+        };
 
         public string Parse(string markdown)
         {

@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 		<PropertyGroup>
-			<OutputType>WinExe</OutputType>
-			<TargetFramework>net5.0-windows</TargetFramework>
-			<ApplicationManifest>app.manifest</ApplicationManifest>
+			<OutputType>Exe</OutputType>
+			<TargetFramework>net6.0</TargetFramework>
 			<StartupObject>MyApp.Program</StartupObject>
 			<AssemblyTitle>MyApp</AssemblyTitle>
 			<AssemblyDescription>My Application Description</AssemblyDescription>
